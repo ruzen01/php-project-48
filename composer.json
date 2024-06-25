@@ -7,7 +7,16 @@
             "email": "kim.vadim.alexandrovich@gmail.com"
         }
     ],
+    "autoload": {
+        "files": [
+            "src/Differ.php"
+        ]
+    },
+    "bin": [
+        "bin/gendiff"
+    ],
     "require": {
-        "docopt/docopt": "^1.0"
+        "docopt/docopt": "^1.0",
+        "lstrojny/functional-php": "^1.17"
     }
 }
