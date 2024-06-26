@@ -1,0 +1,26 @@
+{
+array: [
+- [complex value]
++ [complex value]
+]
+boolean: [
+- true
++ true
+]
+null: [
+- null
++ null
+]
+number: [
+- 123
++ 123
+]
+object: [
+- [complex value]
++ [complex value]
+]
+string: [
+- value
++ 123
+]
+}

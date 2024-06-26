@@ -6,3 +6,6 @@ lint:
 
 test-coverage:
    XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-clover build/logs/clover.xml
+
+.PHONY:
+	install test lint coverage
