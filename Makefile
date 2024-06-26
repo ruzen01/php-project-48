@@ -1,3 +1,6 @@
+install:
+	composer install
+
 lint: 
 	composer lint
 
