@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<ruleset name="Custom Standard">
+    <description>A custom coding standard</description>
+
+    <!-- Путь к исходному коду -->
+    <file>src</file>
+    <file>tests</file>
+
+    <!-- Используем PSR-12 в качестве основы -->
+    <rule ref="PSR12"/>
+
+    <!-- Игнорируем некоторые правила, если это необходимо -->
+    <!-- <rule ref="Generic.Files.LineLength">
+        <exclude-pattern>*/tests/*</exclude-pattern>
+    </rule> -->
+
+    <!-- Настройка отступов: 4 пробела -->
+    <arg name="tab-width" value="4"/>
+    <rule ref="Generic.WhiteSpace.ScopeIndent">
+        <properties>
+            <property name="indent" value="4"/>
+        </properties>
+    </rule>
+
+    <!-- Исключаем некоторые файлы или директории, если это необходимо -->
+    <!-- <exclude-pattern>*/vendor/*</exclude-pattern> -->
+
+    <!-- Показывать прогресс -->
+    <arg value="p"/>
+
+    <!-- Показывать цвета в консоли -->
+    <arg value="-colors"/>
+
+    <!-- Показывать номера строк в отчете об ошибках -->
+    <arg value="n"/>
+</ruleset>
