@@ -1,4 +1,3 @@
-
 <?php
 
 namespace Differ\Tests;
@@ -8,9 +7,10 @@ use function Differ\Differ\genDiff;
 
 class DifferTest extends TestCase
 {
-    public function testGenDiff()
-    {
-        $expected = <<<EOT
-{
-    host: hexlet.io
-  - timeout: 50
+ public function testGenDiff()
+ {
+     $expected = "{\n  - follow: false\n    host: hexlet.io\n  - proxy: 123.234.53.22\n  - timeout: 50\n  + timeout: 20\n}";
+     $actual = genDiff('tests/fixtures/file1.json', 'tests/fixtures/file2.json');
+     $this->assertEquals($expected, $actual);
+ }
+}

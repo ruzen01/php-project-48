@@ -1,6 +1,8 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/ruzen01/php-project-48/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/ruzen01/php-project-48/actions)
 
+[![Test Coverage](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/test_coverage)](https://codeclimate.com/github/codeclimate/codeclimate/test_coverage)
+
 # Difference Calculator
 
 This package calculates the difference between two JSON files.
