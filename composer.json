@@ -3,9 +3,9 @@
     "description": "Second project on Hexlet PHP Course - Gen Diff",
     "license": "MIT",
     "autoload": {
-        "psr-4": {
-            "Hexlet\\Code\\": "src/"
-        }
+        "files": [
+            "src/Differ/Differ.php"
+            ]
     },
     "authors": [
         {
@@ -18,6 +18,6 @@
     },
     
     "bin": [
-    "gendiff"
+        "bin/gendiff"
     ]
 }
