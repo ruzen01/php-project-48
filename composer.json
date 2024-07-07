@@ -1,0 +1,23 @@
+{
+    "name": "hexlet/code",
+    "description": "Second project on Hexlet PHP Course - Gen Diff",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Hexlet\\Code\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "ruzen01",
+            "email": "kim.vadim.alexandrovich@gmail.com"
+        }
+    ],
+    "require": {
+        "docopt/docopt": "^1.0"
+    },
+    
+    "bin": [
+    "gendiff"
+    ]
+}
