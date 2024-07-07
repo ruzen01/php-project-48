@@ -10,7 +10,7 @@ function genDiff(string $pathToFile1, string $pathToFile2): string
     if (!$absolutePath1 || !$absolutePath2) {
         throw new \Exception("File not found");
     }
-    
+
     $data1 = json_decode(file_get_contents($pathToFile1), true);
     $data2 = json_decode(file_get_contents($pathToFile2), true);
 
