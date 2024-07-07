@@ -2,6 +2,8 @@
 
 namespace Differ\Differ;
 
+use Differ\Parsers;
+
 function genDiff(string $pathToFile1, string $pathToFile2): string
 {
     $absolutePath1 = realpath($pathToFile1);
@@ -11,8 +13,8 @@ function genDiff(string $pathToFile1, string $pathToFile2): string
         throw new \Exception("File not found");
     }
 
-    $data1 = json_decode(file_get_contents($pathToFile1), true);
-    $data2 = json_decode(file_get_contents($pathToFile2), true);
+    $data1 = Parsers\parse($absolutePath1);
+    $data2 = Parsers\parse($absolutePath2);
 
     $allKeys = array_unique(array_merge(array_keys($data1), array_keys($data2)));
     sort($allKeys);
