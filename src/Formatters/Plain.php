@@ -22,7 +22,8 @@ function formatNode(array $node, string $path = ''): ?string
         case 'removed':
             return "Property '{$currentPath}' was removed";
         case 'changed':
-            return "Property '{$currentPath}' was updated. From " . formatValue($node['oldValue']) . " to " . formatValue($node['newValue']);
+            return "Property '{$currentPath}' was updated. From " . formatValue($node['oldValue']) .
+             " to " . formatValue($node['newValue']);
         case 'nested':
             return implode("\n", array_filter(array_map(
                 fn($child) => formatNode($child, $currentPath),

@@ -3,6 +3,7 @@
 namespace Differ\Tests;
 
 use PHPUnit\Framework\TestCase;
+
 use function Differ\Differ\genDiff;
 
 class DifferTest extends TestCase
@@ -53,11 +54,10 @@ class DifferTest extends TestCase
             "        fee: 100500\n" .
             "    }\n" .
             "}";
-    
         $actual = genDiff('tests/fixtures/file1.json', 'tests/fixtures/file2.json');
         $this->assertEquals($expected, $actual);
     }
-    
+
     public function testGenDiffYaml()
     {
         $expected = "{\n" .
@@ -105,7 +105,6 @@ class DifferTest extends TestCase
             "        fee: 100500\n" .
             "    }\n" .
             "}";
-    
         $actual = genDiff('tests/fixtures/file1.yml', 'tests/fixtures/file2.yml');
         $this->assertEquals($expected, $actual);
     }
@@ -174,7 +173,6 @@ class DifferTest extends TestCase
             "        fee: 100500\n" .
             "    }\n" .
             "}";
-    
         $actual = genDiff('tests/fixtures/file1.json', 'tests/fixtures/file2.json', 'stylish');
         $this->assertEquals($expected, $actual);
     }
