@@ -34,12 +34,14 @@ function getUniqueSortedKeys(array $data1, array $data2): array
 {
     $keys = array_unique(array_merge(array_keys($data1), array_keys($data2)));
     return array_values(array_reduce($keys, function ($acc, $key) {
-        $insertIndex = 0;
-        while ($insertIndex < count($acc) && strcmp($acc[$insertIndex], $key) < 0) {
-            $insertIndex++;
-        }
-        array_splice($acc, $insertIndex, 0, [$key]);
-        return $acc;
+        $insertIndex = array_reduce(array_keys($acc), function ($carry, $index) use ($acc, $key) {
+            return (strcmp($acc[$index], $key) < 0) ? $index + 1 : $carry;
+        }, 0);
+        return array_merge(
+            array_slice($acc, 0, $insertIndex),
+            [$key],
+            array_slice($acc, $insertIndex)
+        );
     }, []));
 }
 
