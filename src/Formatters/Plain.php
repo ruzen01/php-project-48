@@ -14,7 +14,7 @@ function format(array $diff): string
 
 function formatNode(array $node, string $path = ''): ?string
 {
-    $currentPath = $path ? "{$path}.{$node['key']}" : $node['key'];
+    $currentPath = $path !== '' ? "{$path}.{$node['key']}" : $node['key'];
 
     switch ($node['type']) {
         case 'added':
