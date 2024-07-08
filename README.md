@@ -26,6 +26,7 @@ $ ./bin/gendiff --format json ./tests/fixtures/file1.json ./tests/fixtures/file2
         "foo": "bar"
     }
 }
+```
 
 [![asciicast](https://asciinema.org/a/k7K4FLUV8nYbXbHrgmEFx2csi.svg)](https://asciinema.org/a/k7K4FLUV8nYbXbHrgmEFx2csi)
 
