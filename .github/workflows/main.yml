@@ -1,35 +1,27 @@
-name: Tests
+name: CI
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+on: [push, pull_request]
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-    - name: Setup PHP
+    - name: Set up PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.0'
+        php-version: 7.4
 
     - name: Install dependencies
-      run: composer install
+      run: composer install --prefer-dist --no-progress --no-suggest
 
-    - name: Run tests with coverage
-      run: vendor/bin/phpunit --coverage-clover clover.xml
+    - name: Run tests
+      run: ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 
-      - name: Run test & publish code coverage
-        uses: paambaati/codeclimate-action@v5
-        env:
-          XDEBUG_MODE: coverage
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-        with:
-          coverageCommand: make test-coverage
-          coverageLocations: build/logs/clover.xml:clover
-          debug: true
+    - name: Test coverage report
+      run: ./vendor/bin/test-reporter --coverage-report=build/logs/clover.xml
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
