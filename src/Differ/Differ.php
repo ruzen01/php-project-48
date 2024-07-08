@@ -33,8 +33,14 @@ function buildDiff(array $data1, array $data2): array
 function getUniqueSortedKeys(array $data1, array $data2): array
 {
     $keys = array_unique(array_merge(array_keys($data1), array_keys($data2)));
-    asort($keys);
-    return array_values($keys);
+    return array_values(array_reduce($keys, function ($acc, $key) {
+        $insertIndex = 0;
+        while ($insertIndex < count($acc) && strcmp($acc[$insertIndex], $key) < 0) {
+            $insertIndex++;
+        }
+        array_splice($acc, $insertIndex, 0, [$key]);
+        return $acc;
+    }, []));
 }
 
 function getNode(string $key, array $data1, array $data2): array
