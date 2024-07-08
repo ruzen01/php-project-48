@@ -3,18 +3,25 @@
 namespace Differ\Parsers;
 
 use Exception;
+use Symfony\Component\Yaml\Yaml;
+use Symfony\Component\Yaml\Exception\ParseException;
 
 function parse(string $content, string $extension): array
 {
     switch ($extension) {
         case 'json':
-            return json_decode($content, true);
+            $result = json_decode($content, true);
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                throw new Exception("Invalid JSON: " . json_last_error_msg());
+            }
+            return $result;
         case 'yml':
         case 'yaml':
-            if (!extension_loaded('yaml')) {
-                throw new Exception("YAML extension is not loaded.");
+            try {
+                return Yaml::parse($content);
+            } catch (ParseException $e) {
+                throw new Exception("YAML parsing error: " . $e->getMessage());
             }
-            return yaml_parse($content);
         default:
             throw new Exception("Unsupported file format: {$extension}");
     }
