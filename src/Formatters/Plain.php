@@ -16,41 +16,26 @@ function formatNode(array $node, string $path = ''): ?string
 {
     $currentPath = $path ? "{$path}.{$node['key']}" : $node['key'];
 
-    switch ($node['type']) {
-        case 'added':
-            $val = formatValue($node['value']);
-            return "Property '{$currentPath}' was added with value: {$val}";
-        case 'removed':
-            return "Property '{$currentPath}' was removed";
-        case 'changed':
-            $oldVal = formatValue($node['oldValue']);
-            $newVal = formatValue($node['newValue']);
-            return "Property '{$currentPath}' was updated. From {$oldVal} to {$newVal}";
-        case 'nested':
-            $nestedLines = array_map(
-                fn($child) => formatNode($child, $currentPath),
-                $node['children']
-            );
-            return implode("\n", array_filter($nestedLines));
-        case 'unchanged':
-            return null;
-    }
-    return null;
+    return match ($node['type']) {
+        'added' => "Property '{$currentPath}' was added with value: " . formatValue($node['value']),
+        'removed' => "Property '{$currentPath}' was removed",
+        'changed' => "Property '{$currentPath}' was updated. From " . formatValue($node['oldValue']) . " to " . formatValue($node['newValue']),
+        'nested' => implode("\n", array_filter(array_map(
+            fn($child) => formatNode($child, $currentPath),
+            $node['children']
+        ))),
+        'unchanged' => null,
+        default => null,
+    };
 }
 
-function formatValue($value): string
+function formatValue(mixed $value): string
 {
-    if (is_array($value)) {
-        return '[complex value]';
-    }
-    if (is_bool($value)) {
-        return $value ? 'true' : 'false';
-    }
-    if (is_null($value)) {
-        return 'null';
-    }
-    if (is_string($value)) {
-        return "'{$value}'";
-    }
-    return (string)$value;
+    return match (true) {
+        is_array($value) => '[complex value]',
+        is_bool($value) => $value ? 'true' : 'false',
+        is_null($value) => 'null',
+        is_string($value) => "'{$value}'",
+        default => (string)$value,
+    };
 }

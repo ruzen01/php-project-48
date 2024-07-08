@@ -35,25 +35,24 @@ function formatDiff(array $diff, int $depth = 0): string
     return implode("\n", $lines);
 }
 
-function stringify($value, int $depth): string
+function stringify(mixed $value, int $depth): string
 {
-    if (is_null($value)) {
-        return 'null';
-    }
-    if (is_bool($value)) {
-        return $value ? 'true' : 'false';
-    }
-    if (is_string($value)) {
-        return $value;
-    }
     if (is_array($value)) {
         $indent = str_repeat('    ', $depth);
-        $lines = array_map(function ($key, $val) use ($indent, $depth) {
-            $formattedValue = stringify($val, $depth + 1);
-            return "$indent    $key: $formattedValue";
+        $lines = array_map(function ($key, $val) use ($depth, $indent) {
+            $formattedVal = stringify($val, $depth + 1);
+            return "$indent    $key: $formattedVal";
         }, array_keys($value), $value);
         return "{\n" . implode("\n", $lines) . "\n$indent}";
     }
 
-    return (string) $value;
+    if (is_bool($value)) {
+        return $value ? 'true' : 'false';
+    }
+
+    if (is_null($value)) {
+        return 'null';
+    }
+
+    return (string)$value;
 }
