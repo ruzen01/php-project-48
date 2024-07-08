@@ -41,11 +41,7 @@ function formatValue(mixed $value): string
         return '[complex value]';
     }
     if (is_bool($value)) {
-        if ($value === true) {
-            return 'true';
-        } else {
-            return 'false';
-        }
+        return $value ? 'true' : 'false';
     }
     if (is_null($value)) {
         return 'null';
