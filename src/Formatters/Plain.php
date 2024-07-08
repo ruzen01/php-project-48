@@ -8,7 +8,8 @@ function format(array $diff): string
         return formatNode($node);
     }, $diff);
 
-    return implode("\n", array_filter($lines));
+    $filteredLines = array_filter($lines, fn($line) => $line !== null && $line !== '');
+    return implode("\n", $filteredLines);
 }
 
 function formatNode(array $node, string $path = ''): ?string
@@ -26,10 +27,11 @@ function formatNode(array $node, string $path = ''): ?string
             $newVal = formatValue($node['newValue']);
             return "Property '{$currentPath}' was updated. From {$oldVal} to {$newVal}";
         case 'nested':
-            return implode("\n", array_map(
+            $nestedLines = array_map(
                 fn($child) => formatNode($child, $currentPath),
                 $node['children']
-            ));
+            );
+            return implode("\n", array_filter($nestedLines));
         case 'unchanged':
             return null;
     }
@@ -47,5 +49,8 @@ function formatValue($value): string
     if (is_null($value)) {
         return 'null';
     }
-    return is_string($value) ? "'{$value}'" : (string)$value;
+    if (is_string($value)) {
+        return "'{$value}'";
+    }
+    return (string)$value;
 }
