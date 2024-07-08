@@ -1,4 +1,4 @@
-name: CI
+name: Tests
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,7 +21,7 @@ jobs:
     - name: Install dependencies
       run: composer install
 
-    - name: Run tests and collect coverage
+    - name: Run tests with coverage
       run: vendor/bin/phpunit --coverage-clover clover.xml
 
     - name: Upload coverage to Code Climate
@@ -29,5 +29,5 @@ jobs:
       env:
         CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
       with:
-        coverageCommand: echo "Coverage already generated"
+        coverageCommand: echo "Coverage data already generated"
         coverageLocations: ${{github.workspace}}/clover.xml:clover
