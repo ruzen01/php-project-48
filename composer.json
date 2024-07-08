@@ -20,7 +20,9 @@
     ],
     "require": {
         "docopt/docopt": "^1.0",
-        "symfony/yaml": "^7.1"
+        "php": "^7.4",
+        "phpunit/phpunit": "^9.5",
+        "symfony/yaml": "^5.0"
     },
     
     "bin": [
