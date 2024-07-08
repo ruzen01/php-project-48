@@ -43,7 +43,8 @@ class DifferTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    public function testGenDiffPlain() {
+    public function testGenDiffPlain()
+    {
         $file1 = 'tests/fixtures/file1.json';
         $file2 = 'tests/fixtures/file2.json';
         $expected = file_get_contents('tests/fixtures/expected_plain.txt');

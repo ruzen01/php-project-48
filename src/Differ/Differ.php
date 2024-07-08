@@ -1,11 +1,11 @@
-<?php 
+<?php
 
 namespace Differ\Differ;
 
 use Differ\Parsers;
 use Differ\Formatters;
 
-function genDiff(string $pathToFile1, string $pathToFile2, string $format = 'stylish'): string 
+function genDiff(string $pathToFile1, string $pathToFile2, string $format = 'stylish'): string
 {
     $data1 = parseFile($pathToFile1);
     $data2 = parseFile($pathToFile2);
@@ -21,7 +21,7 @@ function parseFile(string $filePath): array
     return Parsers\parse($content, pathinfo($filePath, PATHINFO_EXTENSION));
 }
 
-function buildDiff(array $data1, array $data2): array 
+function buildDiff(array $data1, array $data2): array
 {
     $keys = getUniqueSortedKeys($data1, $data2);
 
@@ -30,14 +30,14 @@ function buildDiff(array $data1, array $data2): array
     }, $keys);
 }
 
-function getUniqueSortedKeys(array $data1, array $data2): array 
+function getUniqueSortedKeys(array $data1, array $data2): array
 {
     $keys = array_unique(array_merge(array_keys($data1), array_keys($data2)));
     sort($keys);
     return $keys;
 }
 
-function getNode(string $key, array $data1, array $data2): array 
+function getNode(string $key, array $data1, array $data2): array
 {
     if (!array_key_exists($key, $data1)) {
         return ['key' => $key, 'type' => 'added', 'value' => $data2[$key]];
