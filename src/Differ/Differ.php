@@ -3,35 +3,41 @@
 namespace Differ\Differ;
 
 use Differ\Parsers;
+use Differ\Formatters;
 
-function genDiff(string $pathToFile1, string $pathToFile2): string
+function genDiff(string $pathToFile1, string $pathToFile2, string $format = 'stylish'): string
 {
-    $absolutePath1 = realpath($pathToFile1);
-    $absolutePath2 = realpath($pathToFile2);
+    $data1 = Parsers\parse($pathToFile1);
+    $data2 = Parsers\parse($pathToFile2);
 
-    if (!$absolutePath1 || !$absolutePath2) {
-        throw new \Exception("File not found");
-    }
+    $diff = buildDiff($data1, $data2);
 
-    $data1 = Parsers\parse($absolutePath1);
-    $data2 = Parsers\parse($absolutePath2);
+    return Formatters\format($diff, $format);
+}
 
-    $allKeys = array_unique(array_merge(array_keys($data1), array_keys($data2)));
-    sort($allKeys);
+function buildDiff(array $data1, array $data2): array
+{
+    $keys = array_unique(array_merge(array_keys($data1), array_keys($data2)));
+    sort($keys);
 
-    $diff = [];
-    foreach ($allKeys as $key) {
+    return array_map(function ($key) use ($data1, $data2) {
         if (!array_key_exists($key, $data1)) {
-            $diff[] = "  + {$key}: " . json_encode($data2[$key]);
-        } elseif (!array_key_exists($key, $data2)) {
-            $diff[] = "  - {$key}: " . json_encode($data1[$key]);
-        } elseif ($data1[$key] !== $data2[$key]) {
-            $diff[] = "  - {$key}: " . json_encode($data1[$key]);
-            $diff[] = "  + {$key}: " . json_encode($data2[$key]);
-        } else {
-            $diff[] = "    {$key}: " . json_encode($data1[$key]);
+            return ['key' => $key, 'type' => 'added', 'value' => $data2[$key]];
         }
-    }
-
-    return "{\n" . implode("\n", $diff) . "\n}";
+        if (!array_key_exists($key, $data2)) {
+            return ['key' => $key, 'type' => 'removed', 'value' => $data1[$key]];
+        }
+        if (is_array($data1[$key]) && is_array($data2[$key])) {
+            return ['key' => $key, 'type' => 'nested', 'children' => buildDiff($data1[$key], $data2[$key])];
+        }
+        if ($data1[$key] !== $data2[$key]) {
+            return [
+                'key' => $key,
+                'type' => 'changed',
+                'oldValue' => $data1[$key],
+                'newValue' => $data2[$key]
+            ];
+        }
+        return ['key' => $key, 'type' => 'unchanged', 'value' => $data1[$key]];
+    }, $keys);
 }

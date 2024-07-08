@@ -42,5 +42,4 @@ class DifferTest extends TestCase
         $actual = genDiff('tests/fixtures/file1.yml', 'tests/fixtures/file2.yml');
         $this->assertEquals($expected, $actual);
     }
-
 }
