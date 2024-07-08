@@ -1,0 +1,32 @@
+PHPUnit 9.5.10 by Sebastian Bergmann and contributors.
+
+Warning:       No code coverage driver available
+
+EEEE                                                                4 / 4 (100%)
+
+Time: 00:00.003, Memory: 6.00 MB
+
+There were 4 errors:
+
+1) Differ\Tests\DifferTest::testGenDiffJson
+Error: Call to undefined function Differ\Differ\genDiff()
+
+/home/ruzen/php-project-48/tests/DifferTest.php:57
+
+2) Differ\Tests\DifferTest::testGenDiffYaml
+Error: Call to undefined function Differ\Differ\genDiff()
+
+/home/ruzen/php-project-48/tests/DifferTest.php:108
+
+3) Differ\Tests\DifferTest::testGenDiffPlain
+Error: Call to undefined function Differ\Differ\genDiff()
+
+/home/ruzen/php-project-48/tests/DifferTest.php:126
+
+4) Differ\Tests\DifferTest::testGenDiffStylish
+Error: Call to undefined function Differ\Differ\genDiff()
+
+/home/ruzen/php-project-48/tests/DifferTest.php:176
+
+ERRORS!
+Tests: 4, Assertions: 0, Errors: 4.
