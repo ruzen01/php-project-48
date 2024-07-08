@@ -1,0 +1,13 @@
+{"version": 2, "width": 83, "height": 24, "timestamp": 1720432492, "env": {"SHELL": "/bin/bash", "TERM": "xterm-256color"}}
+[0.011107, "o", "\u001b[?2004h\u001b]0;ruzen@ruzen-BoF-XX: ~/php-project-48\u0007\u001b[01;32mruzen@ruzen-BoF-XX\u001b[00m:\u001b[01;34m~/php-project-48\u001b[00m$ "]
+[2.331871, "o", "exit"]
+[2.691288, "o", "\b\b\b\b./bin/gendiff ./tests/fixtures/file1.json ./tests/fixtures/file2.json --format plain"]
+[5.133636, "o", "\r\n\u001b[?2004l\r"]
+[5.154615, "o", "Property 'common.follow' was added with value: false\r\nProperty 'common.setting2' was removed\r\nProperty 'common.setting3' was updated. From true to null\r\nProperty 'common.setting4' was added with value: 'blah blah'\r\nProperty 'common.setting5' was added with value: [complex value]\r\nProperty 'common.setting6.doge.wow' was updated. From '' to 'so much'\r\nProperty 'common.setting6.ops' was added with value: 'vops'\r\nProperty 'group1.baz' was updated. From 'bas' to 'bars'\r\nProperty 'group1.nest' was updated. From [complex value] to 'str'\r\nProperty 'group2' was removed\r\nProperty 'group3' was added with value: [complex value]\r\n"]
+[5.157025, "o", "\u001b[?2004h\u001b]0;ruzen@ruzen-BoF-XX: ~/php-project-48\u0007\u001b[01;32mruzen@ruzen-BoF-XX\u001b[00m:\u001b[01;34m~/php-project-48\u001b[00m$ "]
+[8.00906, "o", "e"]
+[8.442468, "o", "x"]
+[8.930229, "o", "i"]
+[9.009642, "o", "t"]
+[10.271321, "o", "\r\n\u001b[?2004l\r"]
+[10.271392, "o", "exit\r\n"]

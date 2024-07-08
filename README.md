@@ -36,6 +36,6 @@ $ ./bin/gendiff --format json ./tests/fixtures/file1.json ./tests/fixtures/file2
 
 [![asciicast](https://asciinema.org/a/bo4hlaLbixvta6oWOrRsDMRks.svg)](https://asciinema.org/a/bo4hlaLbixvta6oWOrRsDMRks)
 
-[![asciicast](https://asciinema.org/a/TPfSx7yO0VaUsHsyfdVnZdtXP.svg)](https://asciinema.org/a/TPfSx7yO0VaUsHsyfdVnZdtXP)
+[![asciicast](https://asciinema.org/a/3rmfeADOL7GHOV9CEaC6f69WG.svg)](https://asciinema.org/a/3rmfeADOL7GHOV9CEaC6f69WG)
 
-[![asciicast](https://asciinema.org/a/TH6e1n4GFGaQnIjYLNsVVp0CQ.svg)](https://asciinema.org/a/TH6e1n4GFGaQnIjYLNsVVp0CQ)
+[![asciicast](https://asciinema.org/a/YEswjH4RLRSDxxFueYEcCHqQ0.svg)](https://asciinema.org/a/YEswjH4RLRSDxxFueYEcCHqQ0)
