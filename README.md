@@ -7,23 +7,25 @@
 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/e50f1b6e1bb86b82a3ff/test_coverage)](https://codeclimate.com/github/ruzen01/php-project-48/test_coverage)
 
-# Difference Calculator
-
-This package calculates the difference between two JSON files.
-
-## Installation
-composer require hexlet/code
-
+# Gendiff
 
 ## Usage
 
-### As a CLI tool
-$ gendiff file1.json file2.json {
+### JSON Format
 
-follow: false host: hexlet.io
-proxy: 123.234.53.22
-timeout: 50
-timeout: 20
+```sh
+$ ./bin/gendiff --format json ./tests/fixtures/file1.json ./tests/fixtures/file2.json
+{
+    "common": {
+        "setting1": "Value 1",
+        "setting2": "200",
+        "setting3": true
+    },
+    "group1": {
+        "baz": "bas",
+        "foo": "bar"
+    }
+}
 
 [![asciicast](https://asciinema.org/a/k7K4FLUV8nYbXbHrgmEFx2csi.svg)](https://asciinema.org/a/k7K4FLUV8nYbXbHrgmEFx2csi)
 
