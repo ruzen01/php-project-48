@@ -33,9 +33,8 @@ function buildDiff(array $data1, array $data2): array
 function getUniqueSortedKeys(array $data1, array $data2): array
 {
     $keys = array_unique(array_merge(array_keys($data1), array_keys($data2)));
-    $sortedKeys = $keys; // Создаем копию массива
-    sort($sortedKeys); // Сортируем копию
-    return $sortedKeys; // Возвращаем отсортированную копию
+    asort($keys);
+    return array_values($keys);
 }
 
 function getNode(string $key, array $data1, array $data2): array

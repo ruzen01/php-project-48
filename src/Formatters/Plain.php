@@ -31,11 +31,17 @@ function formatNode(array $node, string $path = ''): ?string
 
 function formatValue(mixed $value): string
 {
-    return match (true) {
-        is_array($value) => '[complex value]',
-        is_bool($value) => $value ? 'true' : 'false',
-        is_null($value) => 'null',
-        is_string($value) => "'{$value}'",
-        default => (string)$value,
-    };
+    if (is_array($value)) {
+        return '[complex value]';
+    }
+    if (is_bool($value)) {
+        return $value ? 'true' : 'false';
+    }
+    if (is_null($value)) {
+        return 'null';
+    }
+    if (is_string($value)) {
+        return "'{$value}'";
+    }
+    return (string)$value;
 }
