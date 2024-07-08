@@ -16,7 +16,7 @@ make install
 ```
 
 # Usage
-# As a CLI tool
+### As a CLI tool
 To use the CLI tool, run:
 
 ```sh
