@@ -2,15 +2,16 @@
 
 namespace Differ\Formatters;
 
-use Differ\Formatters\Stylish;
+use function Differ\Formatters\Stylish\format as formatStylish;
+use function Differ\Formatters\Plain\format as formatPlain;
 
-function format(array $diff, string $format = 'stylish'): string
+function format(array $diff, string $format): string
 {
     switch ($format) {
+        case 'plain':
+            return formatPlain($diff);
         case 'stylish':
-            return Stylish\format($diff);
-        // Здесь можно добавить другие форматтеры
         default:
-            throw new \Exception("Unsupported format: {$format}");
+            return formatStylish($diff);
     }
 }

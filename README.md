@@ -34,3 +34,5 @@ timeout: 20
 [![asciicast](https://asciinema.org/a/bo4hlaLbixvta6oWOrRsDMRks.svg)](https://asciinema.org/a/bo4hlaLbixvta6oWOrRsDMRks)
 
 [![asciicast](https://asciinema.org/a/TPfSx7yO0VaUsHsyfdVnZdtXP.svg)](https://asciinema.org/a/TPfSx7yO0VaUsHsyfdVnZdtXP)
+
+[![asciicast](https://asciinema.org/a/TH6e1n4GFGaQnIjYLNsVVp0CQ.svg)](https://asciinema.org/a/TH6e1n4GFGaQnIjYLNsVVp0CQ)

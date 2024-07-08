@@ -2,21 +2,34 @@
 
 namespace Differ\Parsers;
 
-use Symfony\Component\Yaml\Yaml;
+use Exception;
 
-function parse(string $filepath): array
+function parse(string $content, string $extension): array
 {
-    $content = file_get_contents($filepath);
-    $extension = pathinfo($filepath, PATHINFO_EXTENSION);
-
     switch ($extension) {
         case 'json':
             return json_decode($content, true);
         case 'yml':
         case 'yaml':
-            $parsedContent = Yaml::parse($content);
-            return json_decode(json_encode($parsedContent), true); // Преобразуем объект в массив
+            if (!extension_loaded('yaml')) {
+                throw new Exception("YAML extension is not loaded.");
+            }
+            return yaml_parse($content);
         default:
-            throw new \Exception("Unsupported file format: $extension");
+            throw new Exception("Unsupported file format: {$extension}");
     }
+}
+
+function getFileContent(string $path): string
+{
+    if (!file_exists($path)) {
+        throw new Exception("File not found: {$path}");
+    }
+
+    $content = file_get_contents($path);
+    if ($content === false) {
+        throw new Exception("Could not read file: {$path}");
+    }
+
+    return $content;
 }

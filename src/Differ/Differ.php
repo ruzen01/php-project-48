@@ -7,8 +7,11 @@ use Differ\Formatters;
 
 function genDiff(string $pathToFile1, string $pathToFile2, string $format = 'stylish'): string
 {
-    $data1 = Parsers\parse($pathToFile1);
-    $data2 = Parsers\parse($pathToFile2);
+    $content1 = Parsers\getFileContent($pathToFile1);
+    $content2 = Parsers\getFileContent($pathToFile2);
+
+    $data1 = Parsers\parse($content1, pathinfo($pathToFile1, PATHINFO_EXTENSION));
+    $data2 = Parsers\parse($content2, pathinfo($pathToFile2, PATHINFO_EXTENSION));
 
     $diff = buildDiff($data1, $data2);
 

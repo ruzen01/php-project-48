@@ -26,9 +26,9 @@ Options:
   --format <fmt>                Report format [default: stylish]
 DOC;
 
-$args = Docopt::handle($doc, array('version'=>'gendiff 1.0'));
+$args = Docopt::handle($doc, array('version' => 'gendiff 1.0'));
 
 if (isset($args['<firstFile>']) && isset($args['<secondFile>'])) {
-  $diff = genDiff($args['<firstFile>'], $args['<secondFile>']);
-  echo $diff . PHP_EOL;
+    $diff = genDiff($args['<firstFile>'], $args['<secondFile>'], $args['--format']);
+    echo $diff . PHP_EOL;
 }

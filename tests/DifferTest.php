@@ -42,4 +42,11 @@ class DifferTest extends TestCase
         $actual = genDiff('tests/fixtures/file1.yml', 'tests/fixtures/file2.yml');
         $this->assertEquals($expected, $actual);
     }
+
+    public function testGenDiffPlain() {
+        $file1 = 'tests/fixtures/file1.json';
+        $file2 = 'tests/fixtures/file2.json';
+        $expected = file_get_contents('tests/fixtures/expected_plain.txt');
+        $this->assertEquals($expected, genDiff($file1, $file2, 'plain'));
+    }
 }
