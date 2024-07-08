@@ -16,26 +16,36 @@ function formatNode(array $node, string $path = ''): ?string
 {
     $currentPath = $path ? "{$path}.{$node['key']}" : $node['key'];
 
-    return match ($node['type']) {
-        'added' => "Property '{$currentPath}' was added with value: " . formatValue($node['value']),
-        'removed' => "Property '{$currentPath}' was removed",
-        'changed' => "Property '{$currentPath}' was updated. From " . formatValue($node['oldValue']) . " to " . formatValue($node['newValue']),
-        'nested' => implode("\n", array_filter(array_map(
-            fn($child) => formatNode($child, $currentPath),
-            $node['children']
-        ))),
-        'unchanged' => null,
-        default => null,
-    };
+    switch ($node['type']) {
+        case 'added':
+            return "Property '{$currentPath}' was added with value: " . formatValue($node['value']);
+        case 'removed':
+            return "Property '{$currentPath}' was removed";
+        case 'changed':
+            return "Property '{$currentPath}' was updated. From " . formatValue($node['oldValue']) . " to " . formatValue($node['newValue']);
+        case 'nested':
+            return implode("\n", array_filter(array_map(
+                fn($child) => formatNode($child, $currentPath),
+                $node['children']
+            )));
+        case 'unchanged':
+            return null;
+        default:
+            return null;
+    }
 }
 
-function formatValue(mixed $value)
+function formatValue(mixed $value): string
 {
     if (is_array($value)) {
         return '[complex value]';
     }
     if (is_bool($value)) {
-        return $value === true ? 'true' : 'false';
+        if ($value === true) {
+            return 'true';
+        } else {
+            return 'false';
+        }
     }
     if (is_null($value)) {
         return 'null';
