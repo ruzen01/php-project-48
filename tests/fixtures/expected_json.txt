@@ -1,0 +1,33 @@
+{
+  "common": {
+    "follow": false,
+    "setting1": "Value 1",
+    "setting2": "removed",
+    "setting3": null,
+    "setting4": "added",
+    "setting5": {
+      "key5": "value5"
+    },
+    "setting6": {
+      "key": "value",
+      "doge": {
+        "wow": "so much"
+      },
+      "ops": "vops"
+    }
+  },
+  "group1": {
+    "baz": "changed from 'bas' to 'bars'",
+    "foo": "bar",
+    "nest": "changed from {'key': 'value'} to 'str'"
+  },
+  "group2": "removed",
+  "group3": {
+    "deep": {
+      "id": {
+        "number": 45
+      }
+    },
+    "fee": 100500
+  }
+}
