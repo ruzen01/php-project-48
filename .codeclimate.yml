@@ -1,0 +1,3 @@
+version: "2"
+test_reporter:
+ id: your_test_reporter_id
