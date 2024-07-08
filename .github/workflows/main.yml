@@ -24,10 +24,12 @@ jobs:
     - name: Run tests with coverage
       run: vendor/bin/phpunit --coverage-clover clover.xml
 
-    - name: Upload coverage to Code Climate
-      uses: paambaati/codeclimate-action@v3.0.0
-      env:
-        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-      with:
-        coverageCommand: echo "Coverage data already generated"
-        coverageLocations: ${{github.workspace}}/clover.xml:clover
+      - name: Run test & publish code coverage
+        uses: paambaati/codeclimate-action@v5
+        env:
+          XDEBUG_MODE: coverage
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          coverageCommand: make test-coverage
+          coverageLocations: build/logs/clover.xml:clover
+          debug: true
