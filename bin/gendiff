@@ -12,7 +12,7 @@ if (file_exists($autoloadPath1)) {
 
 use function Differ\Differ\genDiff; 
 
-$doc = <<<DOC 
+$doc = <<<DOC
 Usage: gendiff [options] <filepath1> <filepath2> 
 
 Compares two configuration files and shows a difference. 
