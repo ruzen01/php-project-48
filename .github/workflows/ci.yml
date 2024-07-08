@@ -1,0 +1,32 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+ build:
+   runs-on: ubuntu-latest
+
+   steps:
+   - name: Checkout code
+     uses: actions/checkout@v2
+
+   - name: Set up PHP
+     uses: shivammathur/setup-php@v2
+     with:
+       php-version: '7.4' # Укажите версию PHP, которую вы используете
+
+   - name: Install dependencies
+     run: composer install --no-progress --prefer-dist
+
+   - name: Run tests
+     run: ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.xml
+
+   - name: Send coverage to Code Climate
+     env:
+       CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+     run: |
+       curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+       chmod +x ./cc-test-reporter
+       ./cc-test-reporter before-build
+       ./cc-test-reporter format-coverage --input-type clover --output coverage/codeclimate.json coverage.xml
+       ./cc-test-reporter upload-coverage

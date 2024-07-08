@@ -1,7 +1,5 @@
-<phpunit>
-   <coverage processUncoveredFiles="true">
-       <report>
-           <clover outputFile="build/logs/clover.xml"/>
-       </report>
-   </coverage>
-</phpunit>
+<coverage processUncoveredFiles="true">
+   <include>
+       <directory>src/</directory>
+   </include>
+</coverage>
