@@ -3,9 +3,9 @@
 
 [![.github/workflows/main.yml](https://github.com/ruzen01/php-project-48/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/ruzen01/php-project-48/actions/workflows/main.yml)
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/e50f1b6e1bb86b82a3ff/maintainability)](https://codeclimate.com/github/ruzen01/php-project-48/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/96f763e45c2a6acf55e9/maintainability)](https://codeclimate.com/github/ruzen01/php-project-48/maintainability)
 
-[![Test Coverage](https://api.codeclimate.com/v1/badges/e50f1b6e1bb86b82a3ff/test_coverage)](https://codeclimate.com/github/ruzen01/php-project-48/test_coverage)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/96f763e45c2a6acf55e9/test_coverage)](https://codeclimate.com/github/ruzen01/php-project-48/test_coverage)
 
 # Gendiff
 
