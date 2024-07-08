@@ -29,7 +29,7 @@ function formatNode(array $node, string $path = ''): ?string
     };
 }
 
-function formatValue(mixed $value): string
+function formatValue(mixed $value)
 {
     if (is_array($value)) {
         return '[complex value]';
