@@ -1,3 +1,7 @@
 version: "2"
-test_reporter:
- id: your_test_reporter_id
+plugins:
+ coverage:
+   enabled: true
+   config:
+     report_paths:
+     - tests/_output/coverage.xml

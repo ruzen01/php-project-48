@@ -1,5 +1,5 @@
-<phpunit bootstrap="vendor/autoload.php"
-        colors="true"
+<phpunit bootstrap="vendor/autoload.php" 
+        colors="true" 
         verbose="true">
    <testsuites>
        <testsuite name="Application Test Suite">
@@ -10,5 +10,8 @@
        <include>
            <directory>./src</directory>
        </include>
+       <report>
+           <clover outputFile="tests/_output/coverage.xml"/>
+       </report>
    </coverage>
 </phpunit>
