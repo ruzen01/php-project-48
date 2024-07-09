@@ -3,7 +3,7 @@ install:
 
 lint:
 	composer exec --verbose phpcs -- --standard=PSR12 src tests
-	composer exec --verbose phpstan
+	vendor/bin/phpstan analyse src tests
 
 lint-fix:
 	composer exec --verbose phpcbf -- --standard=PSR12 src tests
@@ -17,4 +17,4 @@ test-coverage:
 test-coverage-text:
 	XDEBUG_MODE=coverage composer exec --verbose phpunit tests -- --coverage-text
 
-.PHONY: install lint test test-coverage
+.PHONY: install lint lint-fix test test-coverage test-coverage-text
