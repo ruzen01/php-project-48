@@ -1,13 +1,23 @@
 install:
 	composer install
 
+console:
+	composer exec --verbose psysh
+
 lint:
-	./vendor/bin/phpcs
+	composer exec --verbose phpcs -- --standard=PSR12 src tests
+	composer exec --verbose phpstan
+
+lint-fix:
+	composer exec --verbose phpcbf -- --standard=PSR12 src tests
 
 test:
-	./vendor/bin/phpunit tests
+	composer exec --verbose phpunit tests
 
 test-coverage:
-	./vendor/bin/phpunit tests --coverage-clover build/logs/clover.xml
+	XDEBUG_MODE=coverage composer exec --verbose phpunit tests -- --coverage-clover build/logs/clover.xml
+
+test-coverage-text:
+	XDEBUG_MODE=coverage composer exec --verbose phpunit tests -- --coverage-text
 
 .PHONY: install lint test test-coverage
