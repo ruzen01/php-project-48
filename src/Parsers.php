@@ -6,6 +6,12 @@ use Exception;
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Yaml\Exception\ParseException;
 
+function parseFile(string $filePath): array
+{
+    $content = getFileContent($filePath);
+    return parse($content, pathinfo($filePath, PATHINFO_EXTENSION));
+}
+
 function parse(string $content, string $extension): array
 {
     switch ($extension) {
