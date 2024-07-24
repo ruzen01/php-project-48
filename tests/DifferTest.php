@@ -16,64 +16,40 @@ class DifferTest extends TestCase
     public static function dataProvider(): array
     {
         return [
-            ['expected_default.txt', 'file1.json', 'file2.json'],
-            ['expected_default.txt', 'file1.yml', 'file2.yml']
-        ];
-    }
-
-    public static function dataProviderStylish(): array
-    {
-        return [
-            ['expected_stylish.txt', 'file1.json', 'file2.json'],
-            ['expected_stylish.txt', 'file1.yml', 'file2.yml']
-        ];
-    }
-
-    public static function dataProviderPlain(): array
-    {
-        return [
-            ['expected_plain.txt', 'file1.json', 'file2.json'],
-            ['expected_plain.txt', 'file1.yml', 'file2.yml']
-        ];
-    }
-
-    public static function dataProviderJson(): array
-    {
-        return [
-            ['expected_json.txt', 'file1.json', 'file2.json'],
-            ['expected_json.txt', 'file1.yml', 'file2.yml']
+            ['json'],
+            ['yml']
         ];
     }
 
     #[\PHPUnit\Framework\Attributes\DataProvider('dataProvider')]
-    public function testGenDiffDefault($expectedFile, $file1, $file2)
+    public function testGenDiffDefault($format)
     {
-        $expected = $this->getFixtureContent($expectedFile);
-        $actual = genDiff("tests/fixtures/$file1", "tests/fixtures/$file2");
+        $expected = $this->getFixtureContent('expected_default.txt');
+        $actual = genDiff("tests/fixtures/file1.$format", "tests/fixtures/file2.$format");
         $this->assertEquals($expected, $actual);
     }
 
-    #[\PHPUnit\Framework\Attributes\DataProvider('dataProviderStylish')]
-    public function testGenDiffStylish($expectedFile, $file1, $file2)
+    #[\PHPUnit\Framework\Attributes\DataProvider('dataProvider')]
+    public function testGenDiffStylish($format)
     {
-        $expected = $this->getFixtureContent($expectedFile);
-        $actual = genDiff("tests/fixtures/$file1", "tests/fixtures/$file2", 'stylish');
+        $expected = $this->getFixtureContent('expected_stylish.txt');
+        $actual = genDiff("tests/fixtures/file1.$format", "tests/fixtures/file2.$format", 'stylish');
         $this->assertEquals($expected, $actual);
     }
 
-    #[\PHPUnit\Framework\Attributes\DataProvider('dataProviderPlain')]
-    public function testGenDiffPlain($expectedFile, $file1, $file2)
+    #[\PHPUnit\Framework\Attributes\DataProvider('dataProvider')]
+    public function testGenDiffPlain($format)
     {
-        $expected = $this->getFixtureContent($expectedFile);
-        $actual = genDiff("tests/fixtures/$file1", "tests/fixtures/$file2", 'plain');
+        $expected = $this->getFixtureContent('expected_plain.txt');
+        $actual = genDiff("tests/fixtures/file1.$format", "tests/fixtures/file2.$format", 'plain');
         $this->assertEquals($expected, $actual);
     }
 
-    #[\PHPUnit\Framework\Attributes\DataProvider('dataProviderJson')]
-    public function testGenDiffJson($expectedFile, $file1, $file2)
+    #[\PHPUnit\Framework\Attributes\DataProvider('dataProvider')]
+    public function testGenDiffJson($format)
     {
-        $expected = $this->getFixtureContent($expectedFile);
-        $actual = genDiff("tests/fixtures/$file1", "tests/fixtures/$file2", 'json');
+        $expected = $this->getFixtureContent('expected_json.txt');
+        $actual = genDiff("tests/fixtures/file1.$format", "tests/fixtures/file2.$format", 'json');
         $this->assertEquals($expected, $actual);
     }
 }
